@@ -1,0 +1,124 @@
+/*
+.container {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+}*/
+.container {
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+.link {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.formWrapper {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formTitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.addressFieldset {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.legend {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 10px;
+}
+.field {
+    display: flex;
+    flex-direction: column;
+     margin-bottom: 15px;
+}
+
+.label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.input,
+.select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #cCC;
+}
+
+.input:hover,
+.select:hover {
+    border-color: #007bff;
+}
+
+.errorInput {
+    border-color: #dc3545 !important;
+    font-size: 0.8rem;
+}
+
+.errorMessage {
+    color: #dc3545;
+    font-size: 0.8rem;
+}
+
+.submitButton {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: none;
+}
+
+.submitButton:hover {
+    background-color: #0056b3;
+}
+
+/* Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex; justify-content: center; align-items: center;
+}
+
+.modal {
+    background-color: white;
+    padding: 20px; border-radius: 8px; max-width: 400px; width: calc(100% - 40px);
+}
+
+.modalList {
+    list-style-type:none; padding-left:none;margin-top:none}

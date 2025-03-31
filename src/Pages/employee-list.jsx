@@ -1,21 +1,33 @@
 //WealthHealth-app\src\Pages\employee-list.jsx
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import $ from "jquery";
 //import "datatables.net-dt/css/jquery.dataTables.css";
 import "datatables.net";
+import styles from "../css/employeelist.module.css";
 
 // Importez le script jQuery
 import "../components/employee-list.js";
 
+
 function EmployeeList() {
+    const [employees, setEmployees] = useState([]);
     useEffect(() => {
-        // Déclenchez la fonction jQuery une fois que le composant est monté
+
+        // Récupérer les employés depuis le localStorage
+        const storedEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+
+        // Vérifier si des employés sont stockés dans le localStorage
+        console.log("storedEmployees", storedEmployees);
+        if (storedEmployees) {
+            setEmployees(storedEmployees);
+        }
+        // Initialiser le DataTable
+
         $(() => {
-            // La fonction dans employee-list.js sera exécutée ici
+            // fonction jQuery
         });
 
-        // Nettoyage : détruisez la DataTable lors du démontage du composant
         return () => {
             const table = $('#employee-table').DataTable();
             if (table) {
@@ -25,10 +37,10 @@ function EmployeeList() {
     }, []);
 
     return (
-        <div id="employee-div" className="container">
+        <div id="employee-div" className={styles.container}>
             <h1>Current Employees</h1>
             <table id="employee-table" className="display"></table>
-            <Link to="/">Home</Link>
+            <Link to="/" className={`${styles.homeLink}`}>Home</Link>
         </div>
     );
 }

@@ -13,9 +13,33 @@ function Home() {
     const [submittedData, setSubmittedData] = useState(null);
 
     const onSubmit = (data) => {
+        //MAJ Redux
         dispatch(updateFormData(data));
+        // Sync avec localStorage
+        //const employees = JSON.parse(localStorage.getItem('employees'));
+        const existingEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+        const updatedEmployees = [...existingEmployees, data];
+        // Enregistrement dans le localStorage
+        // Vérification de l'existence de la clé "employees" dans le localStorage
+        /* if (!localStorage.getItem("employees")) {
+             localStorage.setItem("employees", JSON.stringify([]));
+             // Si la clé "employees" n'existe pas, on l'initialise avec un tableau vide
+         }
+         else {
+             localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+         }
+ */
+
+        localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+        // Affichage des données soumises dans la console
+
+        console.log("Submitted Data:", data);
+
+        // Affichage des données soumises dans le modal
         setSubmittedData(data);
+        // Affichage du modal
         setShowModal(true);
+        // Réinitialisation du formulaire
         reset();
     };
 

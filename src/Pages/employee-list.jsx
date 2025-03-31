@@ -2,39 +2,42 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import $ from "jquery";
-//import "datatables.net-dt/css/jquery.dataTables.css";
 import "datatables.net";
 import styles from "../css/employeelist.module.css";
 
-// Importez le script jQuery
-import "../components/employee-list.js";
-
-
 function EmployeeList() {
     const [employees, setEmployees] = useState([]);
+
     useEffect(() => {
-
-        // Récupérer les employés depuis le localStorage
+        // 1. Récupérer les employés depuis le localStorage
         const storedEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+        console.log("storedEmployees in EmployeeList", storedEmployees);
+        setEmployees(storedEmployees);
 
-        // Vérifier si des employés sont stockés dans le localStorage
-        console.log("storedEmployees", storedEmployees);
-        if (storedEmployees) {
-            setEmployees(storedEmployees);
-        }
-        // Initialiser le DataTable
-
-        $(() => {
-            // fonction jQuery
+        // 2. Initialiser DataTables avec les données récupérées
+        const table = $("#employee-table").DataTable({
+            data: storedEmployees,
+            columns: [
+                { title: "First Name", data: "firstName" },
+                { title: "Last Name", data: "lastName" },
+                { title: "Date of Birth", data: "dateOfBirth" },
+                { title: "Start Date", data: "startDate" },
+                { title: "Department", data: "department" },
+                { title: "Street", data: "street" },
+                { title: "City", data: "city" },
+                { title: "State", data: "state" },
+                { title: "Zip Code", data: "zipCode" },
+            ],
+            destroy: true, // Permet de réinitialiser proprement
         });
 
+        // 3. Nettoyage
         return () => {
-            const table = $('#employee-table').DataTable();
             if (table) {
                 table.destroy();
             }
         };
-    }, []);
+    }, []); // ❌ Ne pas utiliser [employees] ici (créerait une boucle infinie)
 
     return (
         <div id="employee-div" className={styles.container}>
@@ -46,3 +49,4 @@ function EmployeeList() {
 }
 
 export default EmployeeList;
+

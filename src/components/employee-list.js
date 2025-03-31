@@ -20,5 +20,6 @@ $(function () {
             { title: 'State', data: 'state' },
             { title: 'Zip Code', data: 'zipCode' },
         ]
+        destroy: true, // Destroy the previous instance of DataTable
     });
 });

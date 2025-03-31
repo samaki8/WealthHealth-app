@@ -33,7 +33,7 @@ function Home() {
         localStorage.setItem("employees", JSON.stringify(updatedEmployees));
         // Affichage des données soumises dans la console
 
-        console.log("Submitted Data:", data);
+        console.log("updatedEmployees in localStorage", updatedEmployees);
 
         // Affichage des données soumises dans le modal
         setSubmittedData(data);

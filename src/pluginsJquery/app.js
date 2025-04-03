@@ -286,3 +286,5 @@ const states = [
         "abbreviation": "WY"
     }
 ];
+
+export { saveEmployee, states };

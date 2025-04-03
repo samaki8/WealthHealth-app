@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { updateFormData } from "../features/formSlice";
-//import { departments } from "../assets/departements";
+import { departments } from "../assets/departements";
 import styles from '../css/home.module.css'; // Import des styles via CSS Modules
-import { states } from "../pluginsJquery/app.js";
-import $ from "jquery";
 
 function Home() {
     const dispatch = useDispatch();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    //const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [submittedData, setSubmittedData] = useState(null);
 
     const onSubmit = (data) => {
@@ -40,8 +38,7 @@ function Home() {
         // Affichage des données soumises dans le modal
         setSubmittedData(data);
         // Affichage du modal
-        $("#confirmation").modal();
-
+        setShowModal(true);
         // Réinitialisation du formulaire
         reset();
     };
@@ -195,17 +192,15 @@ function Home() {
                             <div className={styles.field}>
                                 <label htmlFor="state" className={styles.label}>State</label>
                                 <select
-                                    id="state" name="state"
-
+                                    id="state"
+                                    {...register("state", { required: "State is required" })}
                                     className={`${styles.select} ${errors.state ? styles.errorInput : ''}`}
                                 >
                                     <option value="">Select State</option>
-                                    {states.map((state, index) => (
-                                        <option key={index} value={state.abbreviation}>{state.name}</option>
-                                    ))}
-
+                                    <option value="CA">California</option>
+                                    <option value="NY">New York</option>
+                                    <option value="TX">Texas</option>
                                 </select>
-
                                 {errors.state && (
                                     <p className={styles.errorMessage}>{errors.state.message}</p>
                                 )}
@@ -215,14 +210,6 @@ function Home() {
                         {/* Département */}
                         <div className={styles.field}>
                             <label htmlFor="department" className={styles.label}>Department</label>
-                            <select name="departement" id="department">
-                                <option value="Sales">Sales</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Engineering">Engineering</option>
-                                <option value="Human Resources">Human Resources</option>
-                                <option value="Legal">Legal</option>
-                            </select>
-                            {/*}
                             <select
                                 id="department"
                                 {...register("department", { required: "Required field" })}
@@ -236,19 +223,15 @@ function Home() {
                             {errors.department && (
                                 <p className={styles.errorMessage}>{errors.department.message}</p>
                             )}
-                            */}
                         </div>
                     </div>
 
                     {/* Bouton de soumission */}
-                    <button type="submit" className={styles.submitButton} >Save</button>
-
-
+                    <button type="submit" className={styles.submitButton} >Create Employee</button>
                 </form>
             </div>
-            <div id="confirmation" class="modal">Employee Created!</div>
+
             {/* Modal de confirmation */}
-            {/*
             {showModal && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modal}>
@@ -266,7 +249,6 @@ function Home() {
                     </div>
                 </div>
             )}
-            */}
         </div>
     );
 }

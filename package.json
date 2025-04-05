@@ -10,15 +10,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.0.1",
+    "@mui/x-data-grid": "^7.28.3",
+    "@mui/x-date-pickers": "^7.28.3",
     "@reduxjs/toolkit": "^2.6.1",
+    "@tanstack/react-table": "^8.21.2",
     "datatables.net-dt": "^2.2.2",
-    "jquery": "^3.7.1",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
+    "downshift": "^9.0.9",
     "react": "^19.0.0",
+    "react-datepicker": "^8.2.1",
+    "react-day-picker": "^9.6.4",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
     "react-modal": "^3.16.3",
+    "react-paginate": "^8.3.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.4.0"
+    "react-router-dom": "^7.4.0",
+    "react-select": "^5.10.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

@@ -1,38 +1,38 @@
+
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, } from "react-redux";
 import { updateFormData } from "../features/formSlice";
-//import { departments } from "../assets/departements";
+import { departments } from "../assets/departements";
 import styles from '../css/home.module.css'; // Import des styles via CSS Modules
-import { states } from "../pluginsJquery/app.js";
-import $ from "jquery";
+import DatePicker from '../components/datapicker';
+import Modal from '../components/react-modal';
+import dayjs from 'dayjs';
+import { set } from 'date-fns';
+import classNames from "react-day-picker/style.module.css"
 
 function Home() {
     const dispatch = useDispatch();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    //const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [submittedData, setSubmittedData] = useState(null);
-
+    const [dateOfBirth, setDateOfBirth] = useState(null);
+    const [startDate, setStartDate] = useState(null);
+    const [openCalendarId, setOpenCalendarId] = useState(null);
     const onSubmit = (data) => {
         //MAJ Redux
         dispatch(updateFormData(data));
-        // Sync avec localStorage
-        //const employees = JSON.parse(localStorage.getItem('employees'));
-        const existingEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+        const storedData = localStorage.getItem("employees");
+
+        const existingEmployees = storedData && Array.isArray(storedData) ? JSON.parse(storedData) : [];
         const updatedEmployees = [...existingEmployees, data];
-        // Enregistrement dans le localStorage
-        // Vérification de l'existence de la clé "employees" dans le localStorage
-        /* if (!localStorage.getItem("employees")) {
-             localStorage.setItem("employees", JSON.stringify([]));
-             // Si la clé "employees" n'existe pas, on l'initialise avec un tableau vide
-         }
-         else {
-             localStorage.setItem("employees", JSON.stringify(updatedEmployees));
-         }
- */
 
         localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+
+
+
+
         // Affichage des données soumises dans la console
 
         console.log("updatedEmployees in localStorage", updatedEmployees);
@@ -40,13 +40,13 @@ function Home() {
         // Affichage des données soumises dans le modal
         setSubmittedData(data);
         // Affichage du modal
-        $("#confirmation").modal();
-
+        setShowModal(true);
         // Réinitialisation du formulaire
         reset();
     };
 
     return (
+
         <div className={styles.container}>
             {/* Header */}
             <div className={styles.header}>
@@ -103,28 +103,17 @@ function Home() {
 
                         {/* Date de naissance */}
                         <div className={styles.field}>
-                            <label htmlFor="date-of-birth" className={styles.label}>Date of Birth</label>
-                            <input
-                                type="date"
-                                id="date-of-birth"
-                                {...register("dateOfBirth", {
-                                    required: "Required field",
-                                    validate: (value) => {
-                                        const today = new Date(); // Date actuelle
-                                        const birthDate = new Date(value); // Date saisie
-                                        const age = today.getFullYear() - birthDate.getFullYear();
-                                        const monthDiff = today.getMonth() - birthDate.getMonth();
-                                        const dayDiff = today.getDate() - birthDate.getDate();
 
-                                        // Vérifie si l'âge est inférieur à 18 ans
-                                        if (age < 18 || (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))) {
-                                            return "Employee must be at least 18 years old";
-                                        }
-                                        return true;
-                                    },
-                                })}
-                                className={`${styles.input} ${errors.dateOfBirth ? styles.errorInput : ''}`}
+                            <DatePicker required
+                                label={"Date of Birth"}
+                                selected={dateOfBirth}
+                                onSelect={setDateOfBirth}
+                                calendarId={"dateOfBirth"}
+                                openCalendarId={openCalendarId}
+                                setOpenCalendarId={setOpenCalendarId}
                             />
+
+
                             {errors.dateOfBirth && (
                                 <p className={styles.errorMessage}>{errors.dateOfBirth.message}</p>
                             )}
@@ -132,16 +121,19 @@ function Home() {
 
                         {/* Date de début */}
                         <div className={styles.field}>
-                            <label htmlFor="start-date" className={styles.label}>Start Date</label>
-                            <input
-                                type="date"
-                                id="start-date"
-                                {...register("startDate", { required: "Required field" })}
-                                className={`${styles.input} ${errors.startDate ? styles.errorInput : ''}`}
+
+                            <DatePicker required
+
+                                mode="single"
+                                label={"Start Date"}
+                                selected={startDate}
+                                onSelect={setStartDate}
+                                classNames="custom-calendar"
+                                calendarId={"startDate"}
+                                openCalendarId={openCalendarId}
+                                setOpenCalendarId={setOpenCalendarId}
                             />
-                            {errors.startDate && (
-                                <p className={styles.errorMessage}>{errors.startDate.message}</p>
-                            )}
+
                         </div>
 
                         {/* Adresse */}
@@ -195,17 +187,15 @@ function Home() {
                             <div className={styles.field}>
                                 <label htmlFor="state" className={styles.label}>State</label>
                                 <select
-                                    id="state" name="state"
-
+                                    id="state"
+                                    {...register("state", { required: "State is required" })}
                                     className={`${styles.select} ${errors.state ? styles.errorInput : ''}`}
                                 >
                                     <option value="">Select State</option>
-                                    {states.map((state, index) => (
-                                        <option key={index} value={state.abbreviation}>{state.name}</option>
-                                    ))}
-
+                                    <option value="CA">California</option>
+                                    <option value="NY">New York</option>
+                                    <option value="TX">Texas</option>
                                 </select>
-
                                 {errors.state && (
                                     <p className={styles.errorMessage}>{errors.state.message}</p>
                                 )}
@@ -215,14 +205,6 @@ function Home() {
                         {/* Département */}
                         <div className={styles.field}>
                             <label htmlFor="department" className={styles.label}>Department</label>
-                            <select name="departement" id="department">
-                                <option value="Sales">Sales</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Engineering">Engineering</option>
-                                <option value="Human Resources">Human Resources</option>
-                                <option value="Legal">Legal</option>
-                            </select>
-                            {/*}
                             <select
                                 id="department"
                                 {...register("department", { required: "Required field" })}
@@ -236,39 +218,35 @@ function Home() {
                             {errors.department && (
                                 <p className={styles.errorMessage}>{errors.department.message}</p>
                             )}
-                            */}
                         </div>
                     </div>
 
                     {/* Bouton de soumission */}
-                    <button type="submit" className={styles.submitButton} >Save</button>
-
-
+                    <button type="submit" className={styles.submitButton} >Create Employee</button>
                 </form>
-            </div>
-            <div id="confirmation" class="modal">Employee Created!</div>
+            </div >
+
             {/* Modal de confirmation */}
-            {/*
-            {showModal && (
-                <div className={styles.modalOverlay}>
-                    <div className={styles.modal}>
-                        <h3>✅ Employee Created</h3>
-                        <ul className={styles.modalList}>
-                            {Object.entries(submittedData).map(([key, value]) => (
-                                <li key={key} className={styles.modalItem}>
-                                    <strong>{key}:</strong> {value}
-                                </li>
-                            ))}
-                        </ul>
-                        <button onClick={() => setShowModal(false)} className={styles.closeButton}>
-                            Close
-                        </button>
-                    </div>
-                </div>
-            )}
-            */}
+            <Modal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                title="✅ Employee Created">
+                <ul>
+                    {submittedData && Object.entries(submittedData).map(([key, value]) => (
+                        <li key={key}>
+                            <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                        </li>
+
+
+                    ))}
+                </ul>
+                <p>Employee created successfully!</p>
+            </Modal>
         </div>
+
     );
+
+
 }
 
 export default Home;

@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { updateFormData } from "../features/formSlice";
 import { departments } from "../assets/departements";
 import styles from '../css/home.module.css'; // Import des styles via CSS Modules
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 function Home() {
     const dispatch = useDispatch();

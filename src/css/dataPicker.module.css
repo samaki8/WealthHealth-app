@@ -1,34 +1,3 @@
-body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-
-.title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
-}
-
-.address {
-    margin-top: 10px;
-}
 
 /* Réduire la taille globale du calendrier */
 .rdp {

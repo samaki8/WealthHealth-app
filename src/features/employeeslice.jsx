@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     employees: [],
-    employee: Employee(),
+    employee: {},
 };
 const employeeSlice = createSlice({
     name: "employee",
@@ -16,7 +16,7 @@ const employeeSlice = createSlice({
             state.employee = action.payload;
         },
         clearEmployee: (state) => {
-            state.employee = Employee();
+            state.employee = {};
         },
     },
 });

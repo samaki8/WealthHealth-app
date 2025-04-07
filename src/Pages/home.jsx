@@ -23,6 +23,9 @@ function Home() {
     const onSubmit = (data) => {
         const formattedData = {
             ...data,
+            // Uniformisation des dates au format 'YYYY-MM-DD' pour l'affichage
+            // et la soumission des données
+            // Utilisation de dayjs pour le formatage des dates
             dateOfBirth: dayjs(data.dateOfBirth).format('YYYY-MM-DD'),
             startDate: dayjs(data.startDate).format('YYYY-MM-DD'),
             street: data.street,

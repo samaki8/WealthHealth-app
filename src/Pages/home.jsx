@@ -1,52 +1,52 @@
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { useDispatch, } from "react-redux";
-import { updateFormData } from "../features/formSlice";
+import { useDispatch } from "react-redux";
+import { addEmployee } from '../features/employeeslice';
 import { departments } from "../assets/departements";
-import styles from '../css/home.module.css'; // Import des styles via CSS Modules
-import DatePicker from '../components/datapicker';
+import states from "../assets/states.json";
+import styles from '../css/home.module.css';
 import Modal from '../components/react-modal';
 import dayjs from 'dayjs';
-import { set } from 'date-fns';
-import classNames from "react-day-picker/style.module.css"
+import { useForm } from 'react-hook-form';
+import DateField from '../components/DateField';
+import SelectField from '../components/SelectField';
+import { formatEmployeeData } from '../utils/formatData';
+
 
 function Home() {
     const dispatch = useDispatch();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const [showModal, setShowModal] = useState(false);
     const [submittedData, setSubmittedData] = useState(null);
-    const [dateOfBirth, setDateOfBirth] = useState(null);
-    const [startDate, setStartDate] = useState(null);
-    const [openCalendarId, setOpenCalendarId] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+
     const onSubmit = (data) => {
-        //MAJ Redux
-        dispatch(updateFormData(data));
-        const storedData = localStorage.getItem("employees");
+        const formattedData = {
+            ...data,
+            dateOfBirth: dayjs(data.dateOfBirth).format('YYYY-MM-DD'),
+            startDate: dayjs(data.startDate).format('YYYY-MM-DD'),
+            street: data.street,
+            city: data.city,
+            state: data.state,
+            zipCode: data.zipCode,
+            department: data.department,
+        };
 
-        const existingEmployees = storedData && Array.isArray(storedData) ? JSON.parse(storedData) : [];
-        const updatedEmployees = [...existingEmployees, data];
 
-        localStorage.setItem("employees", JSON.stringify(updatedEmployees));
-
+        // Mise à jour Redux
+        dispatch(addEmployee(formattedData));
 
 
-
-        // Affichage des données soumises dans la console
-
-        console.log("updatedEmployees in localStorage", updatedEmployees);
 
         // Affichage des données soumises dans le modal
-        setSubmittedData(data);
-        // Affichage du modal
-        setShowModal(true);
+        setSubmittedData(formattedData);
+        setIsModalOpen(true);
+
         // Réinitialisation du formulaire
         reset();
     };
 
     return (
-
         <div className={styles.container}>
             {/* Header */}
             <div className={styles.header}>
@@ -102,40 +102,44 @@ function Home() {
                         </div>
 
                         {/* Date de naissance */}
-                        <div className={styles.field}>
+                        <DateField
+                            label="Date of Birth"
+                            id="dateOfBirth"
+                            register={register}
+                            errors={errors}
+                            validationRules={{
+                                required: "Required field",
+                                validate: (value) => {
+                                    const date = new Date(value);
+                                    const today = new Date();
 
-                            <DatePicker required
-                                label={"Date of Birth"}
-                                selected={dateOfBirth}
-                                onSelect={setDateOfBirth}
-                                calendarId={"dateOfBirth"}
-                                openCalendarId={openCalendarId}
-                                setOpenCalendarId={setOpenCalendarId}
-                            />
-
-
-                            {errors.dateOfBirth && (
-                                <p className={styles.errorMessage}>{errors.dateOfBirth.message}</p>
-                            )}
-                        </div>
+                                    const age = today.getFullYear() - date.getFullYear();
+                                    if (age < 18) {
+                                        return "You must be at least 18 years old";
+                                    }
+                                    return true;
+                                },
+                            }}
+                        />
 
                         {/* Date de début */}
-                        <div className={styles.field}>
-
-                            <DatePicker required
-
-                                mode="single"
-                                label={"Start Date"}
-                                selected={startDate}
-                                onSelect={setStartDate}
-                                classNames="custom-calendar"
-                                calendarId={"startDate"}
-                                openCalendarId={openCalendarId}
-                                setOpenCalendarId={setOpenCalendarId}
-                            />
-
-                        </div>
-
+                        <DateField
+                            label="Start Date"
+                            id="startDate"
+                            register={register}
+                            errors={errors}
+                            validationRules={{
+                                required: "Required field",
+                                validate: (value) => {
+                                    const date = new Date(value);
+                                    const today = new Date();
+                                    if (date < today) {
+                                        return "Date must be in the future";
+                                    }
+                                    return true;
+                                },
+                            }}
+                        />
                         {/* Adresse */}
                         <fieldset className={styles.addressFieldset}>
                             <legend className={styles.legend}>Address</legend>
@@ -184,72 +188,66 @@ function Home() {
                             </div>
 
                             {/* État */}
-                            <div className={styles.field}>
-                                <label htmlFor="state" className={styles.label}>State</label>
-                                <select
-                                    id="state"
-                                    {...register("state", { required: "State is required" })}
-                                    className={`${styles.select} ${errors.state ? styles.errorInput : ''}`}
-                                >
-                                    <option value="">Select State</option>
-                                    <option value="CA">California</option>
-                                    <option value="NY">New York</option>
-                                    <option value="TX">Texas</option>
-                                </select>
-                                {errors.state && (
-                                    <p className={styles.errorMessage}>{errors.state.message}</p>
-                                )}
-                            </div>
+                            <SelectField
+                                label="State"
+                                id="state"
+                                options={states.map((state) => ({
+                                    value: state.abbreviation,
+                                    label: state.name,
+                                }))}
+
+                                register={register}
+                                errors={errors}
+                                validationRules={{ required: "State is required" }}
+                            />
+
                         </fieldset>
 
                         {/* Département */}
-                        <div className={styles.field}>
-                            <label htmlFor="department" className={styles.label}>Department</label>
-                            <select
-                                id="department"
-                                {...register("department", { required: "Required field" })}
-                                className={`${styles.select} ${errors.department ? styles.errorInput : ''}`}
-                            >
-                                <option value="">Select Department</option>
-                                {departments.map((department, index) => (
-                                    <option key={index} value={department}>{department}</option>
-                                ))}
-                            </select>
-                            {errors.department && (
-                                <p className={styles.errorMessage}>{errors.department.message}</p>
-                            )}
-                        </div>
+                        <SelectField
+                            label="Department"
+                            id="department"
+                            options={departments.map((department) => ({
+                                value: department,
+                                label: department,
+                            }))}
+                            register={register}
+                            errors={errors}
+                            validationRules={{ required: "Department is required" }}
+                        />
+
                     </div>
 
                     {/* Bouton de soumission */}
-                    <button type="submit" className={styles.submitButton} >Create Employee</button>
+                    <button type="submit" className={styles.submitButton}>Create Employee</button>
                 </form>
             </div >
 
             {/* Modal de confirmation */}
-            <Modal
-                isOpen={showModal}
-                onClose={() => setShowModal(false)}
-                title="✅ Employee Created">
-                <ul>
-                    {submittedData && Object.entries(submittedData).map(([key, value]) => (
-                        <li key={key}>
-                            <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-                        </li>
+            <div>
+
+                <Modal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    title="✅ Employee Created"
+                >
+                    <ul>
+                        {submittedData && Object.entries(submittedData).map(([key, value]) => (
+                            <li key={key}>
+                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                            </li>
+                        ))}
+                    </ul>
+                </Modal>
+            </div>
 
 
-                    ))}
-                </ul>
-                <p>Employee created successfully!</p>
-            </Modal>
         </div>
-
     );
-
-
 }
 
 export default Home;
+
 
 
 

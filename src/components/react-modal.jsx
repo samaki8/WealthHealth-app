@@ -1,30 +1,41 @@
 
 // WealthHealth-app/src/components/Modal.jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import styles from '../css/modal.module.css'; // Créez un fichier CSS pour les styles du modal
+//npm install react-modal
+import React from "react";
+import ReactModal from "react-modal";
 
 function Modal({ isOpen, onClose, title, children }) {
-    if (!isOpen) return null;
     return (
-        <div className={styles.modalOverlay} onClick={onClose} >
-            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                <button className={styles.closeButton} onClick={onClose}>
-                    Close
-                </button>
-                <h3>{title}</h3>
-                <div className={styles.modalBody}>
-                    {children}
-                </div>
-                <button className={styles.submitButton} onClick={onClose}>
-                    Close
-                </button>
-            </div>
-
-        </div>
-
-    )
+        <ReactModal
+            isOpen={isOpen}
+            onRequestClose={onClose} // Fermeture via clic sur l'overlay ou touche ESC
+            style={{
+                overlay: {
+                    backgroundColor: "rgba(0, 0, 0, 0.75)",
+                },
+                content: {
+                    top: "50%",
+                    left: "50%",
+                    right: "auto",
+                    bottom: "auto",
+                    marginRight: "-50%",
+                    transform: "translate(-50%, -50%)",
+                    padding: "20px",
+                    borderRadius: "10px",
+                    width: "400px",
+                    background: "#fff",
+                },
+            }}
+            contentLabel={title || "Modal"}
+        >
+            <button onClick={onClose} style={{ float: "right", marginBottom: "10px" }}>
+                Close
+            </button>
+            {title && <h3>{title}</h3>}
+            <div>{children}</div>
+        </ReactModal>
+    );
 }
 
-
 export default Modal;
+

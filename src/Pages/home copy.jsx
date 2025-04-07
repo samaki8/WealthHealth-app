@@ -43,7 +43,38 @@ function Home() {
         // Réinitialisation du formulaire
         reset();
     };
+    //// Calculer la date pour avoir 18 ans minimum
+    const today = new Date();
+    const maxDate = new Date(
+        today.getFullYear() - 18,
+        today.getMonth(),
+        today.getDate()
+    ).toISOString().split('T')[0];
 
+    // Date minimum pour la date de début (aujourd'hui)
+    const minStartDate = new Date().toISOString().split('T')[0];
+    // Date minimum pour la date de début (aujourd'hui)
+    const minStartDate = new Date().toISOString().split('T')[0];
+
+    const onSubmit = (data) => {
+        // Conversion des dates en format lisible pour l'affichage
+        const displayData = { ...data };
+        if (data.dateOfBirth) {
+            const date = new Date(data.dateOfBirth);
+            displayData.dateOfBirth = date.toLocaleDateString();
+        }
+        if (data.startDate) {
+            const date = new Date(data.startDate);
+            displayData.startDate = date.toLocaleDateString();
+        }
+
+        // Envoi à Redux et localStorage
+        dispatch(addEmployee(data));
+
+        // Affichage du modal
+        setSubmittedData(displayData);
+        setShowModal(true);
+    };
     return (
         <div className={styles.container}>
             {/* Header */}
@@ -101,27 +132,23 @@ function Home() {
 
                         {/* Date de naissance */}
                         <div className={styles.field}>
-                            <label htmlFor="date-of-birth" className={styles.label}>Date of Birth</label>
+                            <label htmlFor="date-of-birth">Date of Birth</label>
                             <input
                                 type="date"
                                 id="date-of-birth"
+                                max={maxDate}
                                 {...register("dateOfBirth", {
-                                    required: "Required field",
-                                    validate: (value) => {
-                                        const today = new Date(); // Date actuelle
-                                        const birthDate = new Date(value); // Date saisie
-                                        const age = today.getFullYear() - birthDate.getFullYear();
-                                        const monthDiff = today.getMonth() - birthDate.getMonth();
-                                        const dayDiff = today.getDate() - birthDate.getDate();
-
-                                        // Vérifie si l'âge est inférieur à 18 ans
-                                        if (age < 18 || (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))) {
-                                            return "Employee must be at least 18 years old";
+                                    required: "Date of birth is required",
+                                    validate: {
+                                        adult: value => {
+                                            const birthDate = new Date(value);
+                                            const age = today.getFullYear() - birthDate.getFullYear();
+                                            const m = today.getMonth() - birthDate.getMonth();
+                                            return (age > 18 || (age === 18 && m >= 0)) ||
+                                                "You must be at least 18 years old";
                                         }
-                                        return true;
-                                    },
+                                    }
                                 })}
-                                className={`${styles.input} ${errors.dateOfBirth ? styles.errorInput : ''}`}
                             />
                             {errors.dateOfBirth && (
                                 <p className={styles.errorMessage}>{errors.dateOfBirth.message}</p>
@@ -130,12 +157,14 @@ function Home() {
 
                         {/* Date de début */}
                         <div className={styles.field}>
-                            <label htmlFor="start-date" className={styles.label}>Start Date</label>
+                            <label htmlFor="start-date">Start Date</label>
                             <input
                                 type="date"
                                 id="start-date"
-                                {...register("startDate", { required: "Required field" })}
-                                className={`${styles.input} ${errors.startDate ? styles.errorInput : ''}`}
+                                min={minStartDate}
+                                {...register("startDate", {
+                                    required: "Start date is required"
+                                })}
                             />
                             {errors.startDate && (
                                 <p className={styles.errorMessage}>{errors.startDate.message}</p>

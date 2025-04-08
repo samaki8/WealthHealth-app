@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addEmployee } from '../features/employeeslice';
 import { departments } from "../assets/departements";
 import states from "../assets/states.json";
-import styles from '../css/home.module.css';
+import styles from '../css/create_employee.module.css';
 import Modal from '../components/react-modal';
 import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';

@@ -1,6 +1,6 @@
 //WealthHealth-app\src\Pages\employee-list.jsx
 import { Link } from "react-router-dom";
-import EmployeeTable from "../components/TabStack_Table";
+import EmployeeTable from "../components/TanStack_Table";
 import styles from "../css/employeelist.module.css";
 
 function EmployeeList() {

@@ -1,5 +1,5 @@
 import { Route, Router, BrowserRouter, Routes } from "react-router-dom";
-import Home from "./Pages/home";
+import CreateEmployee from "./Pages/create-employee";
 import EmployeeList from "./Pages/employee-list";
 import Error from "./Pages/error";
 function AppRouter() {
@@ -7,7 +7,7 @@ function AppRouter() {
         <BrowserRouter>
 
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<CreateEmployee />} />
                 <Route path="/employee-list" element={<EmployeeList />} />
                 <Route path="*" element={<Error />} />
             </Routes>

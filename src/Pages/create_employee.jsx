@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addEmployee } from '../features/employeeslice';
@@ -10,10 +10,10 @@ import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 import DateField from '../components/DateField';
 import SelectField from '../components/SelectField';
-import { formatEmployeeData } from '../utils/formatData';
+//import { formatEmployeeData } from '../utils/formatData';
 
 
-function Home() {
+function CreateEmployee() {
     const dispatch = useDispatch();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [submittedData, setSubmittedData] = useState(null);
@@ -249,7 +249,7 @@ function Home() {
     );
 }
 
-export default Home;
+export default CreateEmployee;
 
 
 

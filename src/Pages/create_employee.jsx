@@ -8,8 +8,10 @@ import styles from '../css/create_employee.module.css';
 import Modal from '../components/react-modal';
 import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
-import DateField from '../components/DateField';
+//import DateField from '../components/DateField';
 import SelectField from '../components/SelectField';
+import DateField from '@sc-component/react-datefield';
+//import styles from '@sc-component/react-datefield';
 //import { formatEmployeeData } from '../utils/formatData';
 
 

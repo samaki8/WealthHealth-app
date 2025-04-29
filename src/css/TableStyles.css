@@ -1,0 +1,146 @@
+body, .employee-page-bg {
+  background: aliceblue;
+  min-height: 100vh;
+}
+
+.employee-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+  padding: 36px 32px 44px 32px;
+}
+
+.employee-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  color: #222;
+}
+
+.styled-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: 0 auto 24px auto;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0,0,0,0.07);
+}
+
+.styled-table thead tr:first-child th {
+  background: #fff;
+  border-bottom: none;
+}
+
+.filter-cell {
+  background: #fff;
+  padding: 10px 18px 5px 18px;
+  border-bottom: none;
+}
+
+.filter-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #f2b7b1;
+  border-radius: 4px;
+  font-size: 0.97em;
+  background: #fff7f6;
+  color: #c0392b;
+}
+
+.filter-input:focus {
+  outline: 2px solid #e74c3c;
+}
+
+.header-cell {
+  background: #fff;
+  color: #222;
+  font-weight: bold;
+  font-size: 1.08em;
+  user-select: none;
+  border-bottom: 2px solid #e74c3c;
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 10px;
+}
+
+.sort-icons {
+  font-size: 0.9em;
+  margin-left: 7px;
+  vertical-align: middle;
+  color: #bbb;
+  display: inline-block;
+}
+
+.sort-icons .active {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #f2b7b1;
+  transition: background 0.18s;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #fdf2f0;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #ffe4e1;
+}
+
+.styled-table td {
+  color: #222;
+  padding: 14px 18px;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.pagination-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 5px;
+  margin: 0 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.18s;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(231,76,60,0.08);
+}
+
+.pagination-btn:disabled {
+  background: #f2b7b1;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.centered-home {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.home-link {
+  color: #e74c3c;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.16s;
+}
+
+.home-link:hover {
+  color: #c0392b;
+  text-decoration: underline;
+}

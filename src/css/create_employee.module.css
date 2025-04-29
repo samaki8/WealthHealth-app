@@ -1,10 +1,160 @@
+/* Fond rouge pour toute la page */
+body, .create-employee-bg {
+  background: #e74c3c;
+  min-height: 100vh;
+}
+
+/* Conteneur principal blanc */
+.container {
+  max-width: 1260px;
+  margin: 48px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+  padding: 36px 32px 44px 32px;
+}
+
+/* Header centré */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.link {
+  color: #e74c3c;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.16s;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.link:hover {
+  color: #c0392b;
+  text-decoration: underline;
+}
+
+/* Formulaire */
+.formWrapper {
+  margin-top: 20px;
+}
+
+.formTitle {
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #e74c3c;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 500 !important;
+  margin-bottom: 6px !important;
+  color: #e74c3c !important;
+}
+
+input, select {
+  padding: 8px 10px;
+  border: 1px solid #f2b7b1;
+  border-radius: 5px;
+  font-size: 1em;
+  background: #fff7f6;
+  color: #222;
+  transition: border 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #e74c3c;
+  border: 1.5px solid #e74c3c;
+}
+
+.errorInput {
+  border: 1.5px solid #e74c3c;
+  background: #fff0ee;
+}
+
+.errorMessage {
+  color: #e74c3c;
+  font-size: 0.93em;
+  margin-top: 3px;
+}
+
+.addressFieldset {
+  border: 1.5px solid #f2b7b1;
+  border-radius: 8px;
+  padding: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.legend {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 1em;
+  padding: 0 10px;
+}
+
+.submitButton {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 7px;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 18px;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 2px 6px rgba(231,76,60,0.08);
+}
+
+.submitButton:hover {
+  background: #c0392b;
+}
+
+.react-datepicker__input-container input {
+  border: 1px solid #f2b7b1 !important;
+  border-radius: 5px !important;
+  background: #fff7f6 !important;
+  color: #cc1414 !important;
+}
+
+
 /*
 .container {
     min-height: 100vh;
     background-color: #f8f9fa;
     padding: 20px;
 }*/
-.container {
+/*.container {
     padding: 20px;
 }
 
@@ -108,6 +258,7 @@
 }
 
 /* Modal */
+/*
 .modalOverlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -122,3 +273,4 @@
 
 .modalList {
     list-style-type:none; padding-left:none;margin-top:none}
+*/

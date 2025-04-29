@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { addEmployee } from '../features/employeeslice';
 import { departments } from "../assets/departements";
 import states from "../assets/states.json";
-import styles from '../css/create_employee.module.css';
+
 import Modal from '../components/react-modal';
 import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 //import DateField from '../components/DateField';
 import SelectField from '../components/SelectField';
 import DateField from '@sc-component/react-datefield';
-//import { formatEmployeeData } from '../utils/formatData';
+import styles from '../css/create_employee.module.css';
 
 
 function CreateEmployee() {
@@ -108,6 +108,7 @@ function CreateEmployee() {
                         {/* Date de naissance */}
                         <DateField
                             label="Date of Birth"
+                            className={styles.field}
                             id="dateOfBirth"
                             register={register}
                             errors={errors}
@@ -124,11 +125,13 @@ function CreateEmployee() {
                                     return true;
                                 },
                             }}
+                            inputClassName={styles.input}
                         />
 
                         {/* Date de début */}
                         <DateField
                             label="Start Date"
+
                             id="startDate"
                             register={register}
                             errors={errors}
@@ -143,6 +146,7 @@ function CreateEmployee() {
                                     return true;
                                 },*/
                             }}
+                            inputClassName={styles.input}
                         />
                         {/* Adresse */}
                         <fieldset className={styles.addressFieldset}>
@@ -194,6 +198,7 @@ function CreateEmployee() {
                             {/* État */}
                             <SelectField
                                 label="State"
+                                /* className={styles.label}*/
                                 id="state"
                                 options={states.map((state) => ({
                                     value: state.abbreviation,
@@ -210,6 +215,7 @@ function CreateEmployee() {
                         {/* Département */}
                         <SelectField
                             label="Department"
+                            /*className={styles.label}*/
                             id="department"
                             options={departments.map((department) => ({
                                 value: department,

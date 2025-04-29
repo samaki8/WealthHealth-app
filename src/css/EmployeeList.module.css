@@ -20,6 +20,12 @@ table {
     border-collapse: collapse;
     margin-bottom: 20px;
 }
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
 
 table th, table td {
     text-align: left;
@@ -64,6 +70,7 @@ a.homeLink {
 
 /* Responsiveness */
 @media (max-width: 768px) {
+    
     table th, table td {
         padding: 8px 10px;
         font-size: 0.9rem;
@@ -72,4 +79,64 @@ a.homeLink {
     h1 {
         font-size: 1.5rem;
     }
+}
+/* Grille du formulaire : 2 colonnes sur desktop, 1 colonne sur mobile */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 12px 2vw;
+    max-width: 98vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .formWrapper, .addressFieldset {
+    padding: 0;
+  }
+  .container {
+    padding: 2vw 1vw;
+    min-width: unset;
+  }
+  .formTitle, .title {
+    font-size: 1.3em;
+  }
+  .submitButton {
+    width: 100%;
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+/* Fieldset adresse : 2 colonnes sur desktop, 1 colonne sur mobile */
+.addressFieldset .grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 700px) {
+  .addressFieldset .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Champs et labels toujours fluides */
+.input, select, .react-datepicker__input-container input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Centrage du header et du bouton sur mobile */
+.header, .formTitle {
+  text-align: center;
 }

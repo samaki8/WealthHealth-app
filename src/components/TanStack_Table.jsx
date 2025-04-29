@@ -9,11 +9,11 @@ import {
 import { useMemo, useState } from "react";
 import { selectEmployees } from "../features/employeeslice";
 import { useSelector } from "react-redux";
-import "../css/TableStyles.css";
+//import "../css/TableStyles.css";
 
 
 
-function EmployeeTable({ Table }) {
+function EmployeeTable() {
     const employees = useSelector(selectEmployees);
     const [page, setPage] = useState(0);
     const [pageSize, setPageSize] = useState(10);

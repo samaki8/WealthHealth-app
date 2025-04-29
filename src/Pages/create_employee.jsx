@@ -134,14 +134,14 @@ function CreateEmployee() {
                             errors={errors}
                             validationRules={{
                                 required: "Required field",
-                                validate: (value) => {
+                                /*validate: (value) => {
                                     const date = new Date(value);
                                     const today = new Date();
                                     if (date < today) {
                                         return "Date must be in the future";
                                     }
                                     return true;
-                                },
+                                },*/
                             }}
                         />
                         {/* Adresse */}

@@ -18,6 +18,7 @@ function EmployeeTable() {
     const [pageSize, setPageSize] = useState(10);
     const [columnFilters, setColumnFilters] = useState([]);
     const [sorting, setSorting] = useState([]); // <-- AJOUT
+    const [globalFilter, setGlobalFilter] = useState(''); // Add global filter state
 
     const columns = useMemo(
         () => [
@@ -40,6 +41,7 @@ function EmployeeTable() {
         state: {
             columnFilters,
             sorting,
+            globalFilter,
             pagination: {
                 pageIndex: page,
                 pageSize: pageSize,
@@ -47,6 +49,7 @@ function EmployeeTable() {
         },
         onColumnFiltersChange: setColumnFilters,
         onSortingChange: setSorting,
+        onGlobalFilterChange: setGlobalFilter,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
@@ -62,9 +65,23 @@ function EmployeeTable() {
         <div className="employee-page-bg">
             <div className="employee-container">
                 <h1 className="employee-title">Current Employees</h1>
+                {/* Global Filter */}
+                <div className="global-filter">
+                    <label htmlFor="globalFilter">Search:</label>
+                    <input
+                        id="globalFilter"
+                        type="text"
+                        value={globalFilter ?? ''}
+                        onChange={e => setGlobalFilter(e.target.value)}
+                        placeholder="Search all columns..."
+                        className="global-filter-input"
+                    />
+                </div>
                 {/* Page Size Selector */}
                 <div className="page-size-control">
+                    <label htmlFor="pageSize">Show:</label>
                     <select
+                        id="pageSize"
                         value={pageSize}
                         onChange={e => {
                             setPageSize(Number(e.target.value));

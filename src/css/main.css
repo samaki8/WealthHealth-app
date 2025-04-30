@@ -1,53 +1,11 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-
-.title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
-}
-
-.address {
-    margin-top: 10px;
-}
-
-/* Réduire la taille globale du calendrier */
-.rdp {
-  font-size: 0.8rem; /* Réduit la taille du texte */
-  max-width: 250px; /* Limite la largeur */
-}
-
-/* Réduire la hauteur des jours */
-.rdp-day {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-}
-
-/* Ajuster les flèches de navigation */
-.rdp-nav {
-  font-size: 0.9rem;
-}
-
-.rdp-caption {
-  font-size: 1rem; /* Taille du mois et de l'année */
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }

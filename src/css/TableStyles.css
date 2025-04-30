@@ -1,5 +1,6 @@
 /*WealthHealth-app\src\css\TableStyles.css*/
-body, .employee-page-bg {
+body,
+.employee-page-bg {
   background: aliceblue;
   min-height: 100vh;
 }
@@ -9,7 +10,7 @@ body, .employee-page-bg {
   margin: 40px auto;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.10);
   padding: 36px 32px 44px 32px;
 }
 
@@ -32,7 +33,7 @@ body, .employee-page-bg {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 0 12px rgba(0,0,0,0.07);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.07);
 }
 
 .styled-table thead tr:first-child th {
@@ -119,7 +120,7 @@ body, .employee-page-bg {
   cursor: pointer;
   transition: background 0.18s;
   font-weight: 500;
-  box-shadow: 0 2px 6px rgba(231,76,60,0.08);
+  box-shadow: 0 2px 6px rgba(231, 76, 60, 0.08);
 }
 
 .pagination-btn:disabled {
@@ -144,4 +145,11 @@ body, .employee-page-bg {
 .home-link:hover {
   color: #c0392b;
   text-decoration: underline;
+}
+
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }

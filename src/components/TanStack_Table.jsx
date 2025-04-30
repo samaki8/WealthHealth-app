@@ -65,36 +65,38 @@ function EmployeeTable() {
         <div className="employee-page-bg">
             <div className="employee-container">
                 <h1 className="employee-title">Current Employees</h1>
-                {/* Global Filter */}
-                <div className="global-filter">
-                    <label htmlFor="globalFilter">Search:</label>
-                    <input
-                        id="globalFilter"
-                        type="text"
-                        value={globalFilter ?? ''}
-                        onChange={e => setGlobalFilter(e.target.value)}
-                        placeholder="Search all columns..."
-                        className="global-filter-input"
-                    />
-                </div>
-                {/* Page Size Selector */}
-                <div className="page-size-control">
-                    <label htmlFor="pageSize">Show:</label>
-                    <select
-                        id="pageSize"
-                        value={pageSize}
-                        onChange={e => {
-                            setPageSize(Number(e.target.value));
-                            setPage(0); // Reset to first page when changing page size
-                        }}
-                        className="page-size-select"
-                    >
-                        {[10, 25, 50, 100].map(pageSize => (
-                            <option key={pageSize} value={pageSize}>
-                                Show {pageSize}
-                            </option>
-                        ))}
-                    </select>
+                <div className="table-controls">
+                    {/* Global Filter */}
+                    <div className="global-filter">
+                        <label htmlFor="globalFilter">Search:</label>
+                        <input
+                            id="globalFilter"
+                            type="text"
+                            value={globalFilter ?? ''}
+                            onChange={e => setGlobalFilter(e.target.value)}
+                            placeholder="Search all columns..."
+                            className="global-filter-input"
+                        />
+                    </div>
+                    {/* Page Size Selector */}
+                    <div className="page-size-control">
+                        <label htmlFor="pageSize">Rows per page:</label>
+                        <select
+                            id="pageSize"
+                            value={pageSize}
+                            onChange={e => {
+                                setPageSize(Number(e.target.value));
+                                setPage(0); // Reset to first page when changing page size
+                            }}
+                            className="page-size-select"
+                        >
+                            {[10, 25, 50, 100].map(pageSize => (
+                                <option key={pageSize} value={pageSize}>
+                                    {pageSize}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
                 <table className="styled-table">
                     <thead>

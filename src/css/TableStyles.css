@@ -154,3 +154,9 @@ body,
   align-items: center;
   margin-bottom: 16px;
 }
+label {
+  font-weight: 500 !important;
+  margin-bottom: 10px !important;
+  color: #e74c3c !important;
+  
+}

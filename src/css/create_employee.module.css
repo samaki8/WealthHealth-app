@@ -89,6 +89,7 @@ input, select {
   transition: border 0.15s;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 10px ;
 }
 
 input:focus, select:focus {

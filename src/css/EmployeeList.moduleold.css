@@ -20,13 +20,14 @@ table {
     border-collapse: collapse;
     margin-bottom: 20px;
 }
+/* Table responsive */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
   margin-bottom: 20px;
 }
 
-
+/* En-tête de la table */
 table th, table td {
     text-align: left;
     padding: 10px 15px;

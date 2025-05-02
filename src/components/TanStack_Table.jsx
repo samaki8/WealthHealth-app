@@ -1,24 +1,24 @@
 //WealthHealth-app\src\components\TabStack_Table.jsx
 import {
-    useReactTable,
     getCoreRowModel,
+    getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
-    getFilteredRowModel,
+    useReactTable,
 } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
-import { selectEmployees } from "../features/employeeslice";
-import { useSelector } from "react-redux";
+import { generateMockData } from "../mockData";
 //import "../css/TableStyles.css";
 
 
 
 function EmployeeTable() {
-    const employees = useSelector(selectEmployees);
+    const employees = useMemo(() => generateMockData(100), []);
     const [page, setPage] = useState(0);
     const [pageSize, setPageSize] = useState(10);
     const [columnFilters, setColumnFilters] = useState([]);
     const [sorting, setSorting] = useState([]); // <-- AJOUT
+    const [globalFilter, setGlobalFilter] = useState(''); // Add global filter state
 
     const columns = useMemo(
         () => [
@@ -41,6 +41,7 @@ function EmployeeTable() {
         state: {
             columnFilters,
             sorting,
+            globalFilter,
             pagination: {
                 pageIndex: page,
                 pageSize: pageSize,
@@ -48,6 +49,7 @@ function EmployeeTable() {
         },
         onColumnFiltersChange: setColumnFilters,
         onSortingChange: setSorting,
+        onGlobalFilterChange: setGlobalFilter,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
@@ -63,8 +65,40 @@ function EmployeeTable() {
         <div className="employee-page-bg">
             <div className="employee-container">
                 <h1 className="employee-title">Current Employees</h1>
+                <div className="table-controls">
+                    {/* Global Filter */}
+                    <div className="global-filter">
+                        <label htmlFor="globalFilter">Search:</label>
+                        <input
+                            id="globalFilter"
+                            type="text"
+                            value={globalFilter ?? ''}
+                            onChange={e => setGlobalFilter(e.target.value)}
+                            placeholder="Search all columns..."
+                            className="global-filter-input"
+                        />
+                    </div>
+                    {/* Page Size Selector */}
+                    <div className="page-size-control">
+                        <label htmlFor="pageSize">Rows per page:</label>
+                        <select
+                            id="pageSize"
+                            value={pageSize}
+                            onChange={e => {
+                                setPageSize(Number(e.target.value));
+                                setPage(0); // Reset to first page when changing page size
+                            }}
+                            className="page-size-select"
+                        >
+                            {[10, 25, 50, 100].map(pageSize => (
+                                <option key={pageSize} value={pageSize}>
+                                    {pageSize}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
                 <table className="styled-table">
-
                     <thead>
                         {/* Ligne des filtres */}
                         <tr>
@@ -116,9 +150,12 @@ function EmployeeTable() {
                         ))}
                     </tbody>
                 </table>
-                {/* Pagination */}
+                {/* Page Navigation */}
                 <div className="pagination">
                     <button className="pagination-btn" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</button>
+                    <span className="page-info">
+                        Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                    </span>
                     <button className="pagination-btn" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
                 </div>
                 <div className="centered-home">

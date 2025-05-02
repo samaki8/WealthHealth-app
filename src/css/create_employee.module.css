@@ -75,7 +75,8 @@ body, .create-employee-bg {
 
 label {
   font-weight: 500 !important;
-  margin-bottom: 6px !important;
+  margin: 6px 0px !important;
+ 
   color: #e74c3c !important;
 }
 
@@ -89,7 +90,8 @@ input, select {
   transition: border 0.15s;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 10px ;
+  margin: 10px 0;
+
 }
 
 input:focus, select:focus {

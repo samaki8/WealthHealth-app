@@ -36,7 +36,7 @@ WealthHealth App est une application React permettant de gérer les employés d'
 
 5. **Servir l'application en production (optionnel) :**
    ```bash
-   npm run serve
+   npm run server
    ```
 
 ---
@@ -152,7 +152,7 @@ export const persistor = persistStore(store);
 
 - `npm run dev` : Lance le serveur de développement.
 - `npm run build` : Compile l'application pour la production.
-- `npm run serve` : Sert l'application compilée en local.
+- `npm run server` : Sert l'application compilée en local.
 
 ---
 

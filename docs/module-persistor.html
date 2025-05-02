@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: persistor</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: persistor</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Configures and creates a Redux store with persistence capabilities.</p>
+<p>This store uses Redux Toolkit's <code>configureStore</code> to set up the store
+and integrates Redux Persist to persist the state of the <code>employee</code> slice
+in local storage. The persisted state is rehydrated when the application loads.</p>
+<p>Key Features:</p>
+<ul>
+<li>Combines reducers using <code>combineReducers</code> (currently only <code>employeeSlice</code>).</li>
+<li>Persists the <code>employee</code> slice using Redux Persist.</li>
+<li>Configures middleware to ignore serialization checks for Redux Persist actions.</li>
+</ul></div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>persistConfig.key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The key for the persisted state.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>persistConfig.storage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The storage engine (local storage).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>persistConfig.whitelist</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>List of reducers to persist.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>store.dispatch</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Dispatches actions to the store.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>store.getState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Retrieves the current state of the store.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>store.subscribe</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Subscribes to store updates.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>persistor.persist</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Starts persisting the store.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>persistor.flush</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Flushes all pending state writes.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store.jsx.html">store.jsx</a>, <a href="store.jsx.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:@reduxjs/toolkit</li>
+        
+            <li>module:redux-persist</li>
+        
+            <li>module:redux-persist/lib/storage</li>
+        
+            <li>module:redux</li>
+        
+            <li>module:./features/employeeslice</li>
+        </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-employeeSlice.html">employeeSlice</a></li><li><a href="module-mockData.html">mockData</a></li><li><a href="module-persistor.html">persistor</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#setGlobalFilter-Updatestheglobalfiltervalue.">setGlobalFilter - Updates the global filter value.</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri May 02 2025 16:01:08 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

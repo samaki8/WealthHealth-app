@@ -1,4 +1,17 @@
+/**
+ * A React component for rendering a date input field with validation and error handling.
+ *
+ * @component
+ * @param {Object} props - The props object.
+ * @param {string} props.label - The label text for the date input field.
+ * @param {string} props.id - The unique identifier for the date input field.
+ * @param {Function} props.register - The function to register the input field with a form library (e.g., react-hook-form).
+ * @param {Object} props.errors - An object containing validation errors for the form fields.
+ * @param {Object} props.validationRules - The validation rules to apply to the date input field.
+ * @returns {JSX.Element} A styled date input field with label and error message.
+ */
 //WealthHealth-app\src\components\DateField.jsx
+
 import React from "react";
 
 function DateField({ label, id, register, errors, validationRules }) {

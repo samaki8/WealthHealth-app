@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>WealthHealth App - README</h1>
+<h2><strong>Description</strong></h2>
+<p>WealthHealth App est une application React permettant de gérer les employés d'une organisation. Elle inclut des fonctionnalités telles que l'ajout d'employés, la visualisation des employés existants, et la persistance des données grâce à Redux Persist.</p>
+<hr>
+<h2><strong>Installation</strong></h2>
+<h3><strong>Prérequis</strong></h3>
+<ul>
+<li>Node.js (version 14 ou supérieure)</li>
+<li>npm ou yarn (gestionnaire de paquets)</li>
+</ul>
+<h3><strong>Étapes d'installation</strong></h3>
+<ol>
+<li>
+<p><strong>Cloner le dépôt :</strong></p>
+<pre class="prettyprint source lang-bash"><code>git clone 
+cd WealthHealth-app
+</code></pre>
+</li>
+<li>
+<p><strong>Installer les dépendances :</strong></p>
+<pre class="prettyprint source lang-bash"><code>npm install
+</code></pre>
+</li>
+<li>
+<p><strong>Lancer l'application en mode développement :</strong></p>
+<pre class="prettyprint source lang-bash"><code>npm run dev
+</code></pre>
+<p>L'application sera accessible à l'adresse <a href="http://localhost:5173">http://localhost:5173</a>.</p>
+</li>
+<li>
+<p><strong>Construire l'application pour la production :</strong></p>
+<pre class="prettyprint source lang-bash"><code>npm run build
+</code></pre>
+</li>
+<li>
+<p><strong>Servir l'application en production (optionnel) :</strong></p>
+<pre class="prettyprint source lang-bash"><code>npm run serve
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2><strong>Technologies et outils utilisés</strong></h2>
+<h3><strong>Frameworks et bibliothèques</strong></h3>
+<ol>
+<li><strong>React</strong><br>
+Utilisé pour construire l'interface utilisateur de manière déclarative.</li>
+<li><strong>Redux Toolkit</strong><br>
+Utilisé pour la gestion de l'état global de l'application.</li>
+<li><strong>Redux Persist</strong><br>
+Permet la persistance des données dans <code>localStorage</code> afin de conserver l'état après un rechargement.</li>
+<li><strong>React Router</strong><br>
+Utilisé pour la navigation entre les pages.</li>
+<li><strong>React Hook Form</strong><br>
+Utilisé pour gérer les formulaires avec validation intégrée.</li>
+<li><strong>Day.js</strong><br>
+Bibliothèque légère pour manipuler et formater les dates.</li>
+<li><strong>CSS Modules</strong><br>
+Permet de scoper les styles CSS au niveau des composants.</li>
+</ol>
+<hr>
+<h2><strong>Structure du projet</strong></h2>
+<pre class="prettyprint source"><code>WealthHealth-app/
+├── public/                     # Fichiers statiques accessibles publiquement
+│   ├── index.html              # Fichier HTML principal
+│   └── headingsmap.js          # Script externe (optionnel)
+├── src/                        # Code source de l'application
+│   ├── assets/                 # Ressources statiques (ex: JSON, images)
+│   │   ├── departements.js     # Liste des départements
+│   │   └── states.json         # Liste des états américains
+│   ├── components/             # Composants réutilisables
+│   │   ├── DateField.jsx       # Champ de saisie pour les dates
+│   │   ├── SelectField.jsx     # Champ de sélection avec options
+│   │   └── react-modal.jsx     # Composant modal pour afficher les confirmations
+│   ├── css/                    # Styles CSS modulaires
+│   │   └── home.module.css     # Styles spécifiques à la page Home
+│   ├── features/               # Slices Redux pour la gestion de l'état global
+│   │   └── employeeslice.jsx  # Slice Redux pour gérer les employés
+│   ├── Pages/                  # Pages principales de l'application
+│   │   ├── Home.jsx            # Page d'accueil avec formulaire d'ajout d'employés
+│   │   └── employee-list.jsx  # Page affichant la liste des employés
+│   ├── utils/                  # Fonctions utilitaires
+│   │    └── formatData.js      # Fonction pour formater les données des employés
+│   ├── App.jsx                 # Composant racine de l'application
+│   ├── router.jsx              # Configuration des routes avec React Router
+│   └── store.jsx               # Configuration du store Redux avec Redux Persist
+└── package.json                # Déclaration des dépendances et scripts npm
+
+</code></pre>
+<hr>
+<h2><strong>Fonctionnalités principales</strong></h2>
+<ol>
+<li>
+<p><strong>Ajout d'employés</strong></p>
+<ul>
+<li>Formulaire avec validation des champs.</li>
+<li>Formatage automatique des dates avant stockage.</li>
+</ul>
+</li>
+<li>
+<p><strong>Visualisation des employés</strong></p>
+<ul>
+<li>Liste paginée et triable des employés existants.</li>
+</ul>
+</li>
+<li>
+<p><strong>Persistance des données</strong></p>
+<ul>
+<li>Les données sont sauvegardées dans <code>localStorage</code> grâce à Redux Persist.</li>
+</ul>
+</li>
+<li>
+<p><strong>Navigation entre pages</strong></p>
+<ul>
+<li>Navigation fluide entre la page d'accueil et la liste des employés via React Router.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2><strong>Configuration spécifique</strong></h2>
+<h3>Redux Persist :</h3>
+<ul>
+<li>Le fichier <code>store.jsx</code> configure Redux Persist pour sauvegarder le slice <code>employee</code> dans <code>localStorage</code>.</li>
+</ul>
+<pre class="prettyprint source lang-jsx"><code>import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['employee'], // Seules les données du slice employee sont persistées.
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+export const store = configureStore({ reducer: persistedReducer });
+export const persistor = persistStore(store);
+</code></pre>
+<hr>
+<h2><strong>Dépendances principales</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>react</code></td>
+<td>Framework JavaScript pour construire l'UI.</td>
+<td>^18.x.x</td>
+</tr>
+<tr>
+<td><code>react-dom</code></td>
+<td>Permet le rendu côté client avec React.</td>
+<td>^18.x.x</td>
+</tr>
+<tr>
+<td><code>react-redux</code></td>
+<td>Intégration de Redux avec React.</td>
+<td>^8.x.x</td>
+</tr>
+<tr>
+<td><code>@reduxjs/toolkit</code></td>
+<td>Boîte à outils pour simplifier Redux.</td>
+<td>^1.x.x</td>
+</tr>
+<tr>
+<td><code>redux-persist</code></td>
+<td>Persistance de l'état Redux via stockage local.</td>
+<td>^6.x.x</td>
+</tr>
+<tr>
+<td><code>react-router-dom</code></td>
+<td>Gestion des routes dans une application React.</td>
+<td>^6.x.x</td>
+</tr>
+<tr>
+<td><code>react-hook-form</code></td>
+<td>Gestion avancée des formulaires dans React.</td>
+<td>^7.x.x</td>
+</tr>
+<tr>
+<td><code>dayjs</code></td>
+<td>Manipulation légère et rapide des dates.</td>
+<td>^1.x.x</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><strong>Scripts disponibles</strong></h2>
+<ul>
+<li><code>npm run dev</code> : Lance le serveur de développement.</li>
+<li><code>npm run build</code> : Compile l'application pour la production.</li>
+<li><code>npm run serve</code> : Sert l'application compilée en local.</li>
+</ul>
+<hr>
+<h2><strong>Améliorations futures</strong></h2>
+<ol>
+<li>Ajouter une fonctionnalité d'édition d'employés existants.</li>
+<li>Implémenter une recherche avancée dans la liste des employés.</li>
+<li>Ajouter un système d'authentification pour sécuriser les données.</li>
+</ol>
+<hr>
+<h2><strong>Support</strong></h2>
+<p>Pour toute question ou problème, contactez-nous via <a href="mailto:support@wealthhealth.com">support@wealthhealth.com</a>.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-employeeSlice.html">employeeSlice</a></li><li><a href="module-mockData.html">mockData</a></li><li><a href="module-persistor.html">persistor</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#setGlobalFilter-Updatestheglobalfiltervalue.">setGlobalFilter - Updates the global filter value.</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri May 02 2025 16:01:08 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

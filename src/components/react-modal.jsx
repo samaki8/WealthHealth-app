@@ -1,8 +1,20 @@
 
+/**
+ * Modal component that renders a customizable modal dialog using the `react-modal` library.
+ *
+ * @param {Object} props - The properties object.
+ * @param {boolean} props.isOpen - Determines whether the modal is open or not.
+ * @param {Function} props.onClose - Callback function to handle modal close action.
+ * @param {string} [props.title] - Optional title to display at the top of the modal.
+ * @param {React.ReactNode} props.children - The content to be displayed inside the modal.
+ *
+ * @returns {JSX.Element} The rendered modal component.
+ */
 // WealthHealth-app/src/components/Modal.jsx
 //npm install react-modal
 import React from "react";
 import ReactModal from "react-modal";
+
 
 function Modal({ isOpen, onClose, title, children }) {
     return (

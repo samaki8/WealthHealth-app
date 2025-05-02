@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/TanStack_Table.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/TanStack_Table.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * EmployeeTable Component
  * 
  * This component renders a table displaying employee data with features such as sorting, filtering, pagination, 
@@ -10,7 +38,7 @@
  * 
  * @example
  * // Usage
- * <EmployeeTable />
+ * &lt;EmployeeTable />
  * 
  * @dependencies
  * - @tanstack/react-table: Provides table functionalities like sorting, filtering, and pagination.
@@ -65,7 +93,7 @@ function EmployeeTable() {
     const [page, setPage] = useState(0);
     const [pageSize, setPageSize] = useState(10);
     const [columnFilters, setColumnFilters] = useState([]);
-    const [sorting, setSorting] = useState([]); // <-- AJOUT
+    const [sorting, setSorting] = useState([]); // &lt;-- AJOUT
     const [globalFilter, setGlobalFilter] = useState(''); // Add global filter state
 
     const columns = useMemo(
@@ -110,14 +138,14 @@ function EmployeeTable() {
     });
 
     return (
-        <div className="employee-page-bg">
-            <div className="employee-container">
-                <h1 className="employee-title">Current Employees</h1>
-                <div className="table-controls">
+        &lt;div className="employee-page-bg">
+            &lt;div className="employee-container">
+                &lt;h1 className="employee-title">Current Employees&lt;/h1>
+                &lt;div className="table-controls">
                     {/* Global Filter */}
-                    <div className="global-filter">
-                        <label htmlFor="globalFilter">Search:</label>
-                        <input
+                    &lt;div className="global-filter">
+                        &lt;label htmlFor="globalFilter">Search:&lt;/label>
+                        &lt;input
                             id="globalFilter"
                             type="text"
                             value={globalFilter ?? ''}
@@ -125,11 +153,11 @@ function EmployeeTable() {
                             placeholder="Search all columns..."
                             className="global-filter-input"
                         />
-                    </div>
+                    &lt;/div>
                     {/* Page Size Selector */}
-                    <div className="page-size-control">
-                        <label htmlFor="pageSize">Rows per page:</label>
-                        <select
+                    &lt;div className="page-size-control">
+                        &lt;label htmlFor="pageSize">Rows per page:&lt;/label>
+                        &lt;select
                             id="pageSize"
                             value={pageSize}
                             onChange={e => {
@@ -139,21 +167,21 @@ function EmployeeTable() {
                             className="page-size-select"
                         >
                             {[10, 25, 50, 100].map(pageSize => (
-                                <option key={pageSize} value={pageSize}>
+                                &lt;option key={pageSize} value={pageSize}>
                                     {pageSize}
-                                </option>
+                                &lt;/option>
                             ))}
-                        </select>
-                    </div>
-                </div>
-                <table className="styled-table">
-                    <thead>
+                        &lt;/select>
+                    &lt;/div>
+                &lt;/div>
+                &lt;table className="styled-table">
+                    &lt;thead>
                         {/* Ligne des filtres */}
-                        <tr>
+                        &lt;tr>
                             {table.getHeaderGroups()[0].headers.map(header => (
-                                <th key={header.id} className="filter-cell">
-                                    {header.column.getCanFilter() && (
-                                        <input
+                                &lt;th key={header.id} className="filter-cell">
+                                    {header.column.getCanFilter() &amp;&amp; (
+                                        &lt;input
                                             type="text"
                                             value={header.column.getFilterValue() ?? ""}
                                             onChange={e => header.column.setFilterValue(e.target.value)}
@@ -161,13 +189,13 @@ function EmployeeTable() {
                                             className="filter-input"
                                         />
                                     )}
-                                </th>
+                                &lt;/th>
                             ))}
-                        </tr>
+                        &lt;/tr>
                         {/* Ligne des titres + tri */}
-                        <tr>
+                        &lt;tr>
                             {table.getHeaderGroups()[0].headers.map(header => (
-                                <th
+                                &lt;th
                                     key={header.id}
                                     className="header-cell"
                                     style={{ background: "#fff", color: "#222", cursor: header.column.getCanSort() ? "pointer" : undefined }}
@@ -175,42 +203,42 @@ function EmployeeTable() {
                                 >
                                     {header.isPlaceholder ? null : header.column.columnDef.header}
                                     {/* Flèches tri toujours visibles */}
-                                    <span className="sort-icons">
-                                        <span className={header.column.getIsSorted() === 'asc' ? 'active' : ''}>▲</span>
-                                        <span className={header.column.getIsSorted() === 'desc' ? 'active' : ''}>▼</span>
-                                    </span>
-                                </th>
+                                    &lt;span className="sort-icons">
+                                        &lt;span className={header.column.getIsSorted() === 'asc' ? 'active' : ''}>▲&lt;/span>
+                                        &lt;span className={header.column.getIsSorted() === 'desc' ? 'active' : ''}>▼&lt;/span>
+                                    &lt;/span>
+                                &lt;/th>
                             ))}
-                        </tr>
-                    </thead>
+                        &lt;/tr>
+                    &lt;/thead>
                     {/* Corps du tableau */}
                     {/* Utilisation de getRowModel pour obtenir les lignes du tableau */}
                     {/* map pour itérer sur chaque ligne et chaque cellule */}
-                    <tbody>
+                    &lt;tbody>
                         {/* Utilisation de getRowModel pour obtenir les lignes du tableau */}
                         {table.getRowModel().rows.map((row) => (
-                            <tr key={row.id}>
+                            &lt;tr key={row.id}>
                                 {/* Utilisation de getVisibleCells pour obtenir les cellules visibles de la ligne */}
                                 {row.getVisibleCells().map((cell) => (
-                                    <td key={cell.id}>{cell.renderValue()}</td>
+                                    &lt;td key={cell.id}>{cell.renderValue()}&lt;/td>
                                 ))}
-                            </tr>
+                            &lt;/tr>
                         ))}
-                    </tbody>
-                </table>
+                    &lt;/tbody>
+                &lt;/table>
                 {/* Page Navigation */}
-                <div className="pagination">
-                    <button className="pagination-btn" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</button>
-                    <span className="page-info">
+                &lt;div className="pagination">
+                    &lt;button className="pagination-btn" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous&lt;/button>
+                    &lt;span className="page-info">
                         Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-                    </span>
-                    <button className="pagination-btn" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
-                </div>
-                <div className="centered-home">
-                    <a href="/" className="home-link">Home</a>
-                </div>
-            </div>
-        </div>
+                    &lt;/span>
+                    &lt;button className="pagination-btn" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next&lt;/button>
+                &lt;/div>
+                &lt;div className="centered-home">
+                    &lt;a href="/" className="home-link">Home&lt;/a>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
 
     );
 
@@ -219,3 +247,26 @@ function EmployeeTable() {
 
 export default EmployeeTable;
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-employeeSlice.html">employeeSlice</a></li><li><a href="module-mockData.html">mockData</a></li><li><a href="module-persistor.html">persistor</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#setGlobalFilter-Updatestheglobalfiltervalue.">setGlobalFilter - Updates the global filter value.</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri May 02 2025 16:01:08 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

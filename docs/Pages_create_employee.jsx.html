@@ -1,4 +1,32 @@
-import { useState } from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Pages/create_employee.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Pages/create_employee.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addEmployee } from '../features/employeeslice';
@@ -57,24 +85,24 @@ function CreateEmployee() {
     };
 
     return (
-        <div className={styles.container}>
+        &lt;div className={styles.container}>
             {/* Header */}
-            <div className={styles.header}>
-                <h1 className={styles.title}>HRnet</h1>
-                <Link to="/employee-list" className={styles.link}>
+            &lt;div className={styles.header}>
+                &lt;h1 className={styles.title}>HRnet&lt;/h1>
+                &lt;Link to="/employee-list" className={styles.link}>
                     View Current Employees →
-                </Link>
-            </div>
+                &lt;/Link>
+            &lt;/div>
 
             {/* Formulaire */}
-            <div className={styles.formWrapper}>
-                <h2 className={styles.formTitle}>Create Employee</h2>
-                <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-                    <div className={styles.grid}>
+            &lt;div className={styles.formWrapper}>
+                &lt;h2 className={styles.formTitle}>Create Employee&lt;/h2>
+                &lt;form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+                    &lt;div className={styles.grid}>
                         {/* Prénom */}
-                        <div className={styles.field}>
-                            <label htmlFor="first-name" className={styles.label}>First Name</label>
-                            <input
+                        &lt;div className={styles.field}>
+                            &lt;label htmlFor="first-name" className={styles.label}>First Name&lt;/label>
+                            &lt;input
                                 type="text"
                                 id="first-name"
                                 {...register("firstName", {
@@ -86,15 +114,15 @@ function CreateEmployee() {
                                 })}
                                 className={`${styles.input} ${errors.firstName ? styles.errorInput : ''}`}
                             />
-                            {errors.firstName && (
-                                <p className={styles.errorMessage}>{errors.firstName.message}</p>
+                            {errors.firstName &amp;&amp; (
+                                &lt;p className={styles.errorMessage}>{errors.firstName.message}&lt;/p>
                             )}
-                        </div>
+                        &lt;/div>
 
                         {/* Nom */}
-                        <div className={styles.field}>
-                            <label htmlFor="last-name" className={styles.label}>Last Name</label>
-                            <input
+                        &lt;div className={styles.field}>
+                            &lt;label htmlFor="last-name" className={styles.label}>Last Name&lt;/label>
+                            &lt;input
                                 type="text"
                                 id="last-name"
                                 {...register("lastName", {
@@ -106,13 +134,13 @@ function CreateEmployee() {
                                 })}
                                 className={`${styles.input} ${errors.lastName ? styles.errorInput : ''}`}
                             />
-                            {errors.lastName && (
-                                <p className={styles.errorMessage}>{errors.lastName.message}</p>
+                            {errors.lastName &amp;&amp; (
+                                &lt;p className={styles.errorMessage}>{errors.lastName.message}&lt;/p>
                             )}
-                        </div>
+                        &lt;/div>
 
                         {/* Date de naissance */}
-                        <DateField
+                        &lt;DateField
                             label="Date of Birth"
                             className={styles.field}
                             id="dateOfBirth"
@@ -125,7 +153,7 @@ function CreateEmployee() {
                                     const today = new Date();
 
                                     const age = today.getFullYear() - date.getFullYear();
-                                    if (age < 18) {
+                                    if (age &lt; 18) {
                                         return "You must be at least 18 years old";
                                     }
                                     return true;
@@ -135,7 +163,7 @@ function CreateEmployee() {
                         />
 
                         {/* Date de début */}
-                        <DateField
+                        &lt;DateField
                             label="Start Date"
 
                             id="startDate"
@@ -146,7 +174,7 @@ function CreateEmployee() {
                                 /*validate: (value) => {
                                     const date = new Date(value);
                                     const today = new Date();
-                                    if (date < today) {
+                                    if (date &lt; today) {
                                         return "Date must be in the future";
                                     }
                                     return true;
@@ -155,54 +183,54 @@ function CreateEmployee() {
                             inputClassName={styles.input}
                         />
                         {/* Adresse */}
-                        <fieldset className={styles.addressFieldset}>
-                            <legend className={styles.legend}>Address</legend>
+                        &lt;fieldset className={styles.addressFieldset}>
+                            &lt;legend className={styles.legend}>Address&lt;/legend>
 
                             {/* Rue */}
-                            <div className={styles.field}>
-                                <label htmlFor="street" className={styles.label}>Street</label>
-                                <input
+                            &lt;div className={styles.field}>
+                                &lt;label htmlFor="street" className={styles.label}>Street&lt;/label>
+                                &lt;input
                                     type="text"
                                     id="street"
                                     {...register("street", { required: "Street is required" })}
                                     className={`${styles.input} ${errors.street ? styles.errorInput : ''}`}
                                 />
-                                {errors.street && (
-                                    <p className={styles.errorMessage}>{errors.street.message}</p>
+                                {errors.street &amp;&amp; (
+                                    &lt;p className={styles.errorMessage}>{errors.street.message}&lt;/p>
                                 )}
-                            </div>
+                            &lt;/div>
 
                             {/* Ville et Code postal */}
-                            <div className={styles.grid}>
-                                <div className={styles.field}>
-                                    <label htmlFor="city" className={styles.label}>City</label>
-                                    <input
+                            &lt;div className={styles.grid}>
+                                &lt;div className={styles.field}>
+                                    &lt;label htmlFor="city" className={styles.label}>City&lt;/label>
+                                    &lt;input
                                         type="text"
                                         id="city"
                                         {...register("city", { required: "City is required" })}
                                         className={`${styles.input} ${errors.city ? styles.errorInput : ''}`}
                                     />
-                                    {errors.city && (
-                                        <p className={styles.errorMessage}>{errors.city.message}</p>
+                                    {errors.city &amp;&amp; (
+                                        &lt;p className={styles.errorMessage}>{errors.city.message}&lt;/p>
                                     )}
-                                </div>
+                                &lt;/div>
 
-                                <div className={styles.field}>
-                                    <label htmlFor="zip-code" className={styles.label}>Zip Code</label>
-                                    <input
+                                &lt;div className={styles.field}>
+                                    &lt;label htmlFor="zip-code" className={styles.label}>Zip Code&lt;/label>
+                                    &lt;input
                                         type="number"
                                         id="zip-code"
                                         {...register("zipCode", { required: "Zip Code is required" })}
                                         className={`${styles.input} ${errors.zipCode ? styles.errorInput : ''}`}
                                     />
-                                    {errors.zipCode && (
-                                        <p className={styles.errorMessage}>{errors.zipCode.message}</p>
+                                    {errors.zipCode &amp;&amp; (
+                                        &lt;p className={styles.errorMessage}>{errors.zipCode.message}&lt;/p>
                                     )}
-                                </div>
-                            </div>
+                                &lt;/div>
+                            &lt;/div>
 
                             {/* État */}
-                            <SelectField
+                            &lt;SelectField
                                 label="State"
                                 /* className={styles.label}*/
                                 id="state"
@@ -216,10 +244,10 @@ function CreateEmployee() {
                                 validationRules={{ required: "State is required" }}
                             />
 
-                        </fieldset>
+                        &lt;/fieldset>
 
                         {/* Département */}
-                        <SelectField
+                        &lt;SelectField
                             label="Department"
                             /*className={styles.label}*/
                             id="department"
@@ -232,33 +260,33 @@ function CreateEmployee() {
                             validationRules={{ required: "Department is required" }}
                         />
 
-                    </div>
+                    &lt;/div>
 
                     {/* Bouton de soumission */}
-                    <button type="submit" className={styles.submitButton}>Create Employee</button>
-                </form>
-            </div >
+                    &lt;button type="submit" className={styles.submitButton}>Create Employee&lt;/button>
+                &lt;/form>
+            &lt;/div >
 
             {/* Modal de confirmation */}
-            <div>
+            &lt;div>
 
-                <Modal
+                &lt;Modal
                     isOpen={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
                     title="✅ Employee Created"
                 >
-                    <ul>
-                        {submittedData && Object.entries(submittedData).map(([key, value]) => (
-                            <li key={key}>
-                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-                            </li>
+                    &lt;ul>
+                        {submittedData &amp;&amp; Object.entries(submittedData).map(([key, value]) => (
+                            &lt;li key={key}>
+                                &lt;strong>{key.charAt(0).toUpperCase() + key.slice(1)}:&lt;/strong> {value}
+                            &lt;/li>
                         ))}
-                    </ul>
-                </Modal>
-            </div>
+                    &lt;/ul>
+                &lt;/Modal>
+            &lt;/div>
 
 
-        </div>
+        &lt;/div>
     );
 }
 
@@ -271,3 +299,26 @@ export default CreateEmployee;
 
 
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-employeeSlice.html">employeeSlice</a></li><li><a href="module-mockData.html">mockData</a></li><li><a href="module-persistor.html">persistor</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#setGlobalFilter-Updatestheglobalfiltervalue.">setGlobalFilter - Updates the global filter value.</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri May 02 2025 16:01:08 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

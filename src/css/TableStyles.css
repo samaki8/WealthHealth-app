@@ -65,6 +65,7 @@ body, .employee-page-bg {
   color: #222;
   font-weight: bold;
   font-size: 1.08em;
+  -webkit-user-select: none;
   user-select: none;
   border-bottom: 2px solid #e74c3c;
   position: relative;
